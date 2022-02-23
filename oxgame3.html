@@ -23,19 +23,19 @@
     <h1>○×ゲーム</h1>
     <table id="field">
       <tr>
-        <td id="b1"></td>
-        <td id="b2"></td>
-        <td id="b3"></td>
+        <td id="b1">1</td>
+        <td id="b2">2</td>
+        <td id="b3">3</td>
       </tr>
       <tr>
-        <td id="b4"></td>
-        <td id="b5"></td>
-        <td id="b6"></td>
+        <td id="b4">4</td>
+        <td id="b5">5</td>
+        <td id="b6">6</td>
       </tr>
       <tr>
-        <td id="b7"></td>
-        <td id="b8"></td>
-        <td id="b9"></td>
+        <td id="b7">7</td>
+        <td id="b8">8</td>
+        <td id="b9">9</td>
       </tr>
     </table>
 
@@ -47,16 +47,27 @@
       var turn = '○';
       var count = 0;
       
-      //b1~b9の要素を取得
-      var b1Msg = document.getElementById('b1');
-      var b2Msg = document.getElementById('b2');
-      var b3Msg = document.getElementById('b3');
-      var b4Msg = document.getElementById('b4');
-      var b5Msg = document.getElementById('b5');
-      var b6Msg = document.getElementById('b6');
-      var b7Msg = document.getElementById('b7');
-      var b8Msg = document.getElementById('b8');
-      var b9Msg = document.getElementById('b9');
+      //tableの要素を取得
+      let table = document.getElementById('field');
+      //cellの値を格納
+      let cellValues = [];
+
+      // セルの中身を取得し、cellvaluesに格納
+      for (let row of table.rows){
+        for(let cell of row.cells){
+          cellValues.push(cell.innerHTML);
+          console.log(cellValues);
+        }
+      }
+      // var b1Msg = document.getElementById('b1');
+      // var b2Msg = document.getElementById('b2');
+      // var b3Msg = document.getElementById('b3');
+      // var b4Msg = document.getElementById('b4');
+      // var b5Msg = document.getElementById('b5');
+      // var b6Msg = document.getElementById('b6');
+      // var b7Msg = document.getElementById('b7');
+      // var b8Msg = document.getElementById('b8');
+      // var b9Msg = document.getElementById('b9');
                   
       var array1;
 
