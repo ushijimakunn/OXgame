@@ -23,19 +23,19 @@
     <h1>○×ゲーム</h1>
     <table id="field">
       <tr>
-        <td id="b1">1</td>
-        <td id="b2">2</td>
-        <td id="b3">3</td>
+        <td id="b1"></td>
+        <td id="b2"></td>
+        <td id="b3"></td>
       </tr>
       <tr>
-        <td id="b4">4</td>
-        <td id="b5">5</td>
-        <td id="b6">6</td>
+        <td id="b4"></td>
+        <td id="b5"></td>
+        <td id="b6"></td>
       </tr>
       <tr>
-        <td id="b7">7</td>
-        <td id="b8">8</td>
-        <td id="b9">9</td>
+        <td id="b7"></td>
+        <td id="b8"></td>
+        <td id="b9"></td>
       </tr>
     </table>
 
@@ -49,16 +49,7 @@
       
       //tableの要素を取得
       let table = document.getElementById('field');
-      //cellの値を格納
-      let cellValues = [];
 
-      // セルの中身を取得し、cellvaluesに格納
-      for (let row of table.rows){
-        for(let cell of row.cells){
-          cellValues.push(cell.innerHTML);
-          console.log(cellValues);
-        }
-      }
       // var b1Msg = document.getElementById('b1');
       // var b2Msg = document.getElementById('b2');
       // var b3Msg = document.getElementById('b3');
@@ -68,8 +59,6 @@
       // var b7Msg = document.getElementById('b7');
       // var b8Msg = document.getElementById('b8');
       // var b9Msg = document.getElementById('b9');
-                  
-      var array1;
 
       function mark(e){
         if(e.target.innerHTML == ''){
@@ -97,84 +86,82 @@
       }
 
       function judge_game(){
-      //盤の各要素を配列に格納
-        var array1 = [b1Msg.textContent,
-                      b2Msg.textContent,
-                      b3Msg.textContent,
-                      b4Msg.textContent,
-                      b5Msg.textContent,
-                      b6Msg.textContent,
-                      b7Msg.textContent,
-                      b8Msg.textContent,
-                      b9Msg.textContent];
-
-        if( array1[0] == '○' && 
-            array1[1] == '○' &&
-            array1[2] == '○' ){
-          judge_msg1();
-        }else if( array1[3] == '○' && 
-                  array1[4] == '○' &&
-                  array1[5] == '○'){
-          judge_msg1();
-        }else if( array1[6] == '○' && 
-                  array1[7] == '○' &&
-                  array1[8] == '○'){
-          judge_msg1();
-        }else if( array1[0] == '○' && 
-                  array1[3] == '○' &&
-                  array1[6] == '○'){
-          judge_msg1();
-        }else if( array1[1] == '○' && 
-                  array1[4] == '○' &&
-                  array1[7] == '○'){
-          judge_msg1();
-        }else if( array1[2] == '○' && 
-                  array1[5] == '○' &&
-                  array1[8] == '○'){
-          judge_msg1();
-        }else if( array1[0] == '○' && 
-                  array1[4] == '○' &&
-                  array1[8] == '○'){
-          judge_msg1();
-        }else if( array1[2] == '○' && 
-                  array1[4] == '○' &&
-                  array1[6] == '○'){
-          judge_msg1();
-        }else if( array1[0] == '×' && 
-                  array1[1] == '×' &&
-                  array1[2] == '×'){
-          judge_msg2();
-        }else if( array1[3] == '×' && 
-                  array1[4] == '×' &&
-                  array1[5] == '×'){
-          judge_msg2();
-        }else if( array1[6] == '×' && 
-                  array1[7] == '×' &&
-                  array1[8] == '×'){
-          judge_msg2();
-        }else if( array1[0] == '×' && 
-                  array1[3] == '×' &&
-                  array1[6] == '×'){
-          judge_msg2();
-        }else if( array1[1] == '×' && 
-                  array1[4] == '×' &&
-                  array1[7] == '×'){
-          judge_msg2();
-        }else if( array1[2] == '×' && 
-                  array1[5] == '×' &&
-                  array1[8] == '×'){
-          judge_msg2();
-        }else if( array1[0] == '×' && 
-                  array1[4] == '×' &&
-                  array1[8] == '×'){
-          judge_msg2();
-        }else if( array1[2] == '×' && 
-                  array1[4] == '×' &&
-                  array1[6] == '×'){
-          judge_msg2();
+        //cellの値を格納
+        let cellValues = [];
+        // セルの中身を取得し、cellvaluesに格納
+        for (let row of table.rows){
+          for(let cell of row.cells){
+            cellValues.push(cell.innerHTML);
+          }
         }
+        console.log(cellValues);
 
-
+        if( cellValues[0] =
+            cellValues[1] = 
+            cellValues[2] ){
+          judge_msg1();
+        }
+        // else if( cellValues[3] == '○' && 
+        //           cellValues[4] == '○' &&
+        //           cellValues[5] == '○'){
+        //   judge_msg1();
+        // }else if( cellValues[6] == '○' && 
+        //           cellValues[7] == '○' &&
+        //           cellValues[8] == '○'){
+        //   judge_msg1();
+        // }else if( cellValues[0] == '○' && 
+        //           cellValues[3] == '○' &&
+        //           cellValues[6] == '○'){
+        //   judge_msg1();
+        // }else if( cellValues[1] == '○' && 
+        //           cellValues[4] == '○' &&
+        //           cellValues[7] == '○'){
+        //   judge_msg1();
+        // }else if( cellValues[2] == '○' && 
+        //           cellValues[5] == '○' &&
+        //           cellValues[8] == '○'){
+        //   judge_msg1();
+        // }else if( cellValues[0] == '○' && 
+        //           cellValues[4] == '○' &&
+        //           cellValues[8] == '○'){
+        //   judge_msg1();
+        // }else if( cellValues[2] == '○' && 
+        //           cellValues[4] == '○' &&
+        //           cellValues[6] == '○'){
+        //   judge_msg1();
+        // }else if( cellValues[0] == '×' && 
+        //           cellValues[1] == '×' &&
+        //           cellValues[2] == '×'){
+        //   judge_msg2();
+        // }else if( cellValues[3] == '×' && 
+        //           cellValues[4] == '×' &&
+        //           cellValues[5] == '×'){
+        //   judge_msg2();
+        // }else if( cellValues[6] == '×' && 
+        //           cellValues[7] == '×' &&
+        //           cellValues[8] == '×'){
+        //   judge_msg2();
+        // }else if( cellValues[0] == '×' && 
+        //           cellValues[3] == '×' &&
+        //           cellValues[6] == '×'){
+        //   judge_msg2();
+        // }else if( cellValues[1] == '×' && 
+        //           cellValues[4] == '×' &&
+        //           cellValues[7] == '×'){
+        //   judge_msg2();
+        // }else if( cellValues[2] == '×' && 
+        //           cellValues[5] == '×' &&
+        //           cellValues[8] == '×'){
+        //   judge_msg2();
+        // }else if( cellValues[0] == '×' && 
+        //           cellValues[4] == '×' &&
+        //           cellValues[8] == '×'){
+        //   judge_msg2();
+        // }else if( cellValues[2] == '×' && 
+        //           cellValues[4] == '×' &&
+        //           cellValues[6] == '×'){
+        //   judge_msg2();
+        // }
       }
 
       function judge_msg1(){
@@ -192,6 +179,7 @@
         turnMsg.textContent = "あなたの番です。"
       }
 
+      // クリック時のアクション
       for(let i=1; i < 10; i++ ){
         document.getElementById('b'+ i).addEventListener('click',mark);
       };
