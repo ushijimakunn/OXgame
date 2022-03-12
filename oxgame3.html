@@ -66,6 +66,7 @@
           change_turn();
           count = count + 1;
           judge_game();
+          turn_msg(turn);
           end_game();
         }
       }
@@ -96,11 +97,48 @@
         }
         console.log(cellValues);
 
-        if( cellValues[0] =
-            cellValues[1] = 
-            cellValues[2] ){
-          judge_msg1();
+        if(       cellValues[0] == cellValues[1] &&  
+                  cellValues[1] == cellValues[2] &&
+                  cellValues[2] == cellValues[0] && 
+                  cellValues[0] != ""){ 
+            judge_msg(cellValues[0]);
+        }else if( cellValues[3] == cellValues[4] && 
+                  cellValues[4] == cellValues[5] &&
+                  cellValues[5] == cellValues[3] &&
+                  cellValues[3] != ""){
+            judge_msg(cellValues[3]);
+        }else if( cellValues[6] == cellValues[7] && 
+                  cellValues[7] == cellValues[8] &&
+                  cellValues[8] == cellValues[6] &&
+                  cellValues[6] != ""){
+           judge_msg(cellValues[6]);
+        }else if( cellValues[0] == cellValues[3] && 
+                  cellValues[3] == cellValues[6] &&
+                  cellValues[6] == cellValues[0] &&
+                  cellValues[0] != ""){
+           judge_msg(cellValues[0]);
+        }else if( cellValues[1] == cellValues[4] && 
+                  cellValues[4] == cellValues[7] &&
+                  cellValues[7] == cellValues[1] &&
+                  cellValues[1] != ""){
+           judge_msg(cellValues[1]);
+        }else if( cellValues[2] == cellValues[5] && 
+                  cellValues[5] == cellValues[8] &&
+                  cellValues[8] == cellValues[2] &&
+                  cellValues[2] != ""){
+           judge_msg(cellValues[2]);
+        }else if( cellValues[0] == cellValues[4] && 
+                  cellValues[4] == cellValues[8] &&
+                  cellValues[8] == cellValues[0] &&
+                  cellValues[0] != ""){
+           judge_msg(cellValues[0]);
+        }else if( cellValues[2] == cellValues[4] && 
+                  cellValues[4] == cellValues[6] &&
+                  cellValues[6] == cellValues[2] &&
+                  cellValues[2] != ""){
+           judge_msg(cellValues[2]);
         }
+
         // else if( cellValues[3] == '○' && 
         //           cellValues[4] == '○' &&
         //           cellValues[5] == '○'){
@@ -164,19 +202,26 @@
         // }
       }
 
-      function judge_msg1(){
+      function judge_msg(winner){
         var resultMsg = document.getElementById('game_result')
-        resultMsg.textContent = "○の勝利！！"
+        resultMsg.textContent = winner + "の勝利！！"
+        // alert('試合終了です。');
       }
       
-      function judge_msg2(){
-        var resultMsg = document.getElementById('game_result')
-        resultMsg.textContent = "×の勝利！！"
-      }
+      // function judge_msg1(){
+      //   var resultMsg = document.getElementById('game_result')
+      //   resultMsg.textContent = "○の勝利！！"
+      //   alert('試合終了です。');
+      // }
+      
+      // function judge_msg2(){
+      //   var resultMsg = document.getElementById('game_result')
+      //   resultMsg.textContent = "×の勝利！！"
+      // }
 
-      function turn_msg(){
+      function turn_msg(nextTurn){
         var turnMsg = document.getElementById('view_turn')
-        turnMsg.textContent = "あなたの番です。"
+        turnMsg.textContent = nextTurn + "の番です。"
       }
 
       // クリック時のアクション
