@@ -40,12 +40,31 @@
           var tr = document.createElement('tr');
           for(var j = 0; j < 5; j++){
             var td = document.createElement('td');
+            // var text = document.createTextNode('▲');
             n = n +1;
             td.id = 'b' + n;
             tr.appendChild(td);
           }
           field.appendChild(tr);
         }
+
+        document.getElementById('b1').innerHTML = "▲";
+        document.getElementById('b2').innerHTML = "▲";
+        document.getElementById('b3').innerHTML = "▲";
+        document.getElementById('b4').innerHTML = "▲";
+        document.getElementById('b5').innerHTML = "▲";
+        document.getElementById('b6').innerHTML = "▲";
+        document.getElementById('b10').innerHTML = "▲";
+        document.getElementById('b11').innerHTML = "▲";
+        document.getElementById('b15').innerHTML = "▲";
+        document.getElementById('b16').innerHTML = "▲";
+        document.getElementById('b20').innerHTML = "▲";
+        document.getElementById('b21').innerHTML = "▲";
+        document.getElementById('b22').innerHTML = "▲";
+        document.getElementById('b23').innerHTML = "▲";
+        document.getElementById('b24').innerHTML = "▲";
+        document.getElementById('b25').innerHTML = "▲";
+
         //クリック時のアクション
         for(var k = 1; k < 26; k++){
           var tdElement = document.getElementById('b' + k);
@@ -86,7 +105,7 @@
       }
 
       function end_game(){
-        if(count == 25 ){
+        if(count == 9 ){
           alert('終了しました。');
           window.location.reload();
         }
