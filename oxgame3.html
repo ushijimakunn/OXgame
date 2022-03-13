@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>oxgame2</title>
+    <title>三目並べ</title>
 
     <style type="text/css">
       #field td{
@@ -21,45 +21,45 @@
 
   <body>
     <h1>○×ゲーム</h1>
+
+    <p id="view_turn"></p>
+    
     <table id="field">
-      <tr>
-        <td id="b1"></td>
-        <td id="b2"></td>
-        <td id="b3"></td>
-      </tr>
-      <tr>
-        <td id="b4"></td>
-        <td id="b5"></td>
-        <td id="b6"></td>
-      </tr>
-      <tr>
-        <td id="b7"></td>
-        <td id="b8"></td>
-        <td id="b9"></td>
-      </tr>
-    </table>
+
+    </table> 
 
     <p id="game_result"></p>
     
-    <p id="view_turn"></p>
 
     <script type="text/javascript">
+      //読み込み時の処理
+      window.onload = function(){
+        var n = 0;
+        //tableを作成
+        for(var i = 0; i < 3; i++){
+          var tr = document.createElement('tr');
+          for(var j = 0; j < 3; j++){
+            var td = document.createElement('td');
+            n = n +1;
+            td.id = 'b' + n;
+            tr.appendChild(td);
+          }
+          field.appendChild(tr);
+        }
+        //クリック時のアクション
+        for(var k = 1; k < 10; k++){
+          document.getElementById('b' + k).addEventListener('click',mark);
+          console.log(k);
+        }
+      }
+        
       var turn = '○';
       var count = 0;
       
       //tableの要素を取得
       let table = document.getElementById('field');
 
-      // var b1Msg = document.getElementById('b1');
-      // var b2Msg = document.getElementById('b2');
-      // var b3Msg = document.getElementById('b3');
-      // var b4Msg = document.getElementById('b4');
-      // var b5Msg = document.getElementById('b5');
-      // var b6Msg = document.getElementById('b6');
-      // var b7Msg = document.getElementById('b7');
-      // var b8Msg = document.getElementById('b8');
-      // var b9Msg = document.getElementById('b9');
-
+      //OXを記入する関数
       function mark(e){
         if(e.target.innerHTML == ''){
           e.target.innerHTML = turn;
@@ -95,7 +95,7 @@
             cellValues.push(cell.innerHTML);
           }
         }
-        console.log(cellValues);
+        // console.log(cellValues);
 
         if(       cellValues[0] == cellValues[1] &&  
                   cellValues[1] == cellValues[2] &&
@@ -138,68 +138,6 @@
                   cellValues[2] != ""){
            judge_msg(cellValues[2]);
         }
-
-        // else if( cellValues[3] == '○' && 
-        //           cellValues[4] == '○' &&
-        //           cellValues[5] == '○'){
-        //   judge_msg1();
-        // }else if( cellValues[6] == '○' && 
-        //           cellValues[7] == '○' &&
-        //           cellValues[8] == '○'){
-        //   judge_msg1();
-        // }else if( cellValues[0] == '○' && 
-        //           cellValues[3] == '○' &&
-        //           cellValues[6] == '○'){
-        //   judge_msg1();
-        // }else if( cellValues[1] == '○' && 
-        //           cellValues[4] == '○' &&
-        //           cellValues[7] == '○'){
-        //   judge_msg1();
-        // }else if( cellValues[2] == '○' && 
-        //           cellValues[5] == '○' &&
-        //           cellValues[8] == '○'){
-        //   judge_msg1();
-        // }else if( cellValues[0] == '○' && 
-        //           cellValues[4] == '○' &&
-        //           cellValues[8] == '○'){
-        //   judge_msg1();
-        // }else if( cellValues[2] == '○' && 
-        //           cellValues[4] == '○' &&
-        //           cellValues[6] == '○'){
-        //   judge_msg1();
-        // }else if( cellValues[0] == '×' && 
-        //           cellValues[1] == '×' &&
-        //           cellValues[2] == '×'){
-        //   judge_msg2();
-        // }else if( cellValues[3] == '×' && 
-        //           cellValues[4] == '×' &&
-        //           cellValues[5] == '×'){
-        //   judge_msg2();
-        // }else if( cellValues[6] == '×' && 
-        //           cellValues[7] == '×' &&
-        //           cellValues[8] == '×'){
-        //   judge_msg2();
-        // }else if( cellValues[0] == '×' && 
-        //           cellValues[3] == '×' &&
-        //           cellValues[6] == '×'){
-        //   judge_msg2();
-        // }else if( cellValues[1] == '×' && 
-        //           cellValues[4] == '×' &&
-        //           cellValues[7] == '×'){
-        //   judge_msg2();
-        // }else if( cellValues[2] == '×' && 
-        //           cellValues[5] == '×' &&
-        //           cellValues[8] == '×'){
-        //   judge_msg2();
-        // }else if( cellValues[0] == '×' && 
-        //           cellValues[4] == '×' &&
-        //           cellValues[8] == '×'){
-        //   judge_msg2();
-        // }else if( cellValues[2] == '×' && 
-        //           cellValues[4] == '×' &&
-        //           cellValues[6] == '×'){
-        //   judge_msg2();
-        // }
       }
 
       function judge_msg(winner){
@@ -208,26 +146,10 @@
         // alert('試合終了です。');
       }
       
-      // function judge_msg1(){
-      //   var resultMsg = document.getElementById('game_result')
-      //   resultMsg.textContent = "○の勝利！！"
-      //   alert('試合終了です。');
-      // }
-      
-      // function judge_msg2(){
-      //   var resultMsg = document.getElementById('game_result')
-      //   resultMsg.textContent = "×の勝利！！"
-      // }
-
       function turn_msg(nextTurn){
         var turnMsg = document.getElementById('view_turn')
         turnMsg.textContent = nextTurn + "の番です。"
       }
-
-      // クリック時のアクション
-      for(let i=1; i < 10; i++ ){
-        document.getElementById('b'+ i).addEventListener('click',mark);
-      };
 
     </script>
     
