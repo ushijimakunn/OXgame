@@ -20,9 +20,9 @@
   </head>
 
   <body>
-    <h1>○×ゲーム</h1>
+    <h1>三目並べ</h1>
 
-    <p id="view_turn"></p>
+    <p id="view_turn">○の番です。</p>
     
     <table id="field">
 
@@ -30,7 +30,6 @@
 
     <p id="game_result"></p>
     
-
     <script type="text/javascript">
       //読み込み時の処理
       window.onload = function(){
@@ -49,7 +48,6 @@
         //クリック時のアクション
         for(var k = 1; k < 10; k++){
           document.getElementById('b' + k).addEventListener('click',mark);
-          console.log(k);
         }
       }
         
@@ -83,6 +81,7 @@
       function end_game(){
         if(count == 9 ){
           alert('終了しました。');
+          window.location.reload();
         }
       }
 
@@ -142,8 +141,9 @@
 
       function judge_msg(winner){
         var resultMsg = document.getElementById('game_result')
-        resultMsg.textContent = winner + "の勝利！！"
-        // alert('試合終了です。');
+        // resultMsg.textContent = winner + "の勝利！！"
+        alert(winner + "の勝利！！");
+        window.location.reload();
       }
       
       function turn_msg(nextTurn){
