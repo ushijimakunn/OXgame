@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三目並べ改</title>
+
+    <style type="text/css">
+      #field td{
+        width: 100px;
+        height: 100px;
+        font-size: 60px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <h1>三目並べ改</h1>
+
+    <p id="view_turn">○の番です。</p>
+    
+    <table id="field">
+
+    </table> 
+
+    <p id="game_result"></p>
+    
+    <script type="text/javascript">
+
+      //読み込み時の処理
+      window.onload = function(){
+        var n = 0;
+        //tableを作成
+        for(var i = 0; i < 5; i++){
+          var tr = document.createElement('tr');
+          for(var j = 0; j < 5; j++){
+            var td = document.createElement('td');
+            // var text = document.createTextNode('▲');
+            n = n +1;
+            td.id = 'b' + n;
+            tr.appendChild(td);
+          }
+          field.appendChild(tr);
+        }
+
+        //外周埋め
+        document.getElementById('b1').innerHTML = "▲";
+        document.getElementById('b2').innerHTML = "▲";
+        document.getElementById('b3').innerHTML = "▲";
+        document.getElementById('b4').innerHTML = "▲";
+        document.getElementById('b5').innerHTML = "▲";
+        document.getElementById('b6').innerHTML = "▲";
+        document.getElementById('b10').innerHTML = "▲";
+        document.getElementById('b11').innerHTML = "▲";
+        document.getElementById('b15').innerHTML = "▲";
+        document.getElementById('b16').innerHTML = "▲";
+        document.getElementById('b20').innerHTML = "▲";
+        document.getElementById('b21').innerHTML = "▲";
+        document.getElementById('b22').innerHTML = "▲";
+        document.getElementById('b23').innerHTML = "▲";
+        document.getElementById('b24').innerHTML = "▲";
+        document.getElementById('b25').innerHTML = "▲";
+
+        //クリック時のアクション
+        for(var k = 1; k < 26; k++){
+          var tdElement = document.getElementById('b' + k);
+          tdElement.addEventListener('click',mark);
+        }
+      }
+        
+      var turn = '○';
+      var count = 0;
+      
+      //tableの要素を取得
+      let table = document.getElementById('field');
+
+      //OXを記入する関数
+      function mark(e){
+        if(e.target.innerHTML == ''){
+          e.target.innerHTML = turn;
+          change_turn();
+          count = count + 1;
+
+          //クリックされたの要素の番号を取得
+          var tdLists = document.querySelectorAll('td');
+          var index = Array.prototype.indexOf.call(tdLists,e.target);
+
+          judge_game(index);
+          turn_msg(turn);
+          end_game();
+        }
+      }
+
+      function change_turn(){
+        if (turn == '○'){
+          turn = '×';
+        }
+        else{
+          turn = '○';
+        }
+      }
+
+      function end_game(){
+        if(count == 9 ){
+          alert('終了しました。');
+          window.location.reload();
+        }
+      }
+
+      function judge_game(index){
+        //cellの値を格納
+        let cellValues = [];
+        // セルの中身を取得し、cellvaluesに格納
+        for (let row of table.rows){
+          for(let cell of row.cells){
+            cellValues.push(cell.innerHTML);
+          }
+        }
+          //横チェック
+          if(       cellValues[index]     == cellValues[index + 1]  &&
+                    cellValues[index + 1] == cellValues[index + 2]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index]     == cellValues[index - 1]  &&
+                    cellValues[index - 1] == cellValues[index - 2]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index - 1] == cellValues[index]      &&
+                    cellValues[index ]    == cellValues[index + 1]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }
+          //縦チェック
+          else if(  cellValues[index]     == cellValues[index + 5]  &&
+                    cellValues[index + 5] == cellValues[index + 10] &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index]     == cellValues[index - 5]   &&
+                    cellValues[index - 5] == cellValues[index - 10]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index - 5] == cellValues[index]      &&
+                    cellValues[index]     == cellValues[index + 5]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }
+          // 斜めチェック( 右上方向)
+          else if(  cellValues[index]     == cellValues[index + 4]  &&
+                    cellValues[index + 4] == cellValues[index + 8] &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index]     == cellValues[index - 4]   &&
+                    cellValues[index - 4] == cellValues[index - 8]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index - 4] == cellValues[index]      &&
+                    cellValues[index]     == cellValues[index + 4]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }
+          // 斜めチェック（左上方向）
+          else if(  cellValues[index]     == cellValues[index + 6]  &&
+                    cellValues[index + 6] == cellValues[index + 12] &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index]     == cellValues[index - 6]   &&
+                    cellValues[index - 6] == cellValues[index - 12]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }else if( cellValues[index - 6] == cellValues[index]      &&
+                    cellValues[index]     == cellValues[index + 6]  &&
+                    cellValues[index]     != "" ){
+              judge_msg(cellValues[index]);
+          }
+      }
+
+      function judge_msg(winner){
+        var resultMsg = document.getElementById('game_result')
+        // resultMsg.textContent = winner + "の勝利！！"
+        alert(winner + "の勝利！！");
+        window.location.reload();
+      }
+      
+      function turn_msg(nextTurn){
+        var turnMsg = document.getElementById('view_turn')
+        turnMsg.textContent = nextTurn + "の番です。"
+      }
+
+    </script>
+    
+  </body>
+</html>
