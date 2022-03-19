@@ -12,7 +12,7 @@
         width: 50px;
         height: 50px;
         font-size: 30px;
-        border: 1px solid #ccc;
+        border: 0.5px solid #ccc;
         text-align: center;
       }
     </style>
@@ -31,8 +31,13 @@
     <p id="game_result"></p>
     
     <script type="text/javascript">
+      //盤面の大きさを記入
+      var table_size = 10;
+      // dammytableのサイズを算出
+      var dammy_table_size = table_size + 1;
       var dammy = [];
       var turn = '○';
+      // ゲーム終了の変数を定義
       var count = 0;
       //tableの要素を取得
       let table = document.getElementById('field');
@@ -41,9 +46,9 @@
       window.onload = function(){
         var n = 0;
         //tableを作成
-        for(var i = 0; i < 10; i++){
+        for(var i = 0; i < dammy_table_size; i++){
           var tr = document.createElement('tr');
-          for(var j = 0; j < 10; j++){
+          for(var j = 0; j < dammy_table_size; j++){
             var td = document.createElement('td');
             // var text = document.createTextNode('▲');
             td.id = 'b' + n;
@@ -53,24 +58,24 @@
           field.appendChild(tr);
         }
         //dammy配列の作成
-        for(i = 0; i < 10; i++){
+        for(i = 0; i < dammy_table_size; i++){
           dammy.push(i);
           document.getElementById('b' + i).innerHTML = "▲";
         }
-        for(i = 10; i < 91; i = i +10){
+        for(i = dammy_table_size; i < (dammy_table_size**2); i = i +dammy_table_size){
           dammy.push(i);
           document.getElementById('b' + i).innerHTML = "▲";
         }
-        for(i = 19; i < 100; i = i +10){
+        for(i = table_size; i < (dammy_table_size**2); i = i + dammy_table_size){
           dammy.push(i);
           document.getElementById('b' + i).innerHTML = "▲";
         }
-        for(i = 91; i < 100; i++){
+        for(i = (table_size*dammy_table_size); i < (dammy_table_size**2); i++){
           dammy.push(i);
           document.getElementById('b' + i).innerHTML = "▲";
         }
         //クリック時のアクション
-        for(var k = 1; k < 100; k++){
+        for(var k = 1; k < (dammy_table_size**2); k++){
           var tdElement = document.getElementById('b' + k);
           tdElement.addEventListener('click',mark);
         }
@@ -101,7 +106,7 @@
       }
 
       function end_game(){
-        if(count == 100 ){
+        if(count == table_size**2 ){
           alert('終了しました。');
           window.location.reload();
         }
@@ -122,7 +127,7 @@
         }
         //横チェック
           // 右チェック
-          for (var i = 1; i < 100 ; i ++){
+          for (var i = 1; i < dammy_table_size**2 ; i ++){
             if( dammy.includes(index + i) ){
               break;
             }
@@ -134,7 +139,7 @@
             }
           }
           //左チェック
-          for (var i = 1; i < 100 ; i++){
+          for (var i = 1; i < dammy_table_size**2 ; i++){
             if( dammy.includes(index - i) ){
               break;
             }
@@ -150,7 +155,7 @@
           }
         //縦チェック
           // 下チェック
-          for (var i = 10; i < 100 ; i = i + 10){
+          for (var i = dammy_table_size; i < dammy_table_size**2 ; i = i + dammy_table_size){
             if( dammy.includes(index + i) ){
               break;
             }
@@ -162,7 +167,7 @@
             }
           }
           //上チェック
-          for (var i = 10; i < 100 ; i= i + 10){
+          for (var i = dammy_table_size; i < dammy_table_size**2 ; i= i + dammy_table_size){
             if( dammy.includes(index - i) ){
               break;
             }
@@ -178,7 +183,7 @@
           }
         //右上方向チェック
           // 左下チェック
-          for (var i = 9; i < 100 ; i = i + 9){
+          for (var i = table_size; i < dammy_table_size**2 ; i = i + table_size){
             if( dammy.includes(index + i) ){
               break;
             }
@@ -190,7 +195,7 @@
             }
           }
           //右上チェック
-          for (var i = 9; i < 100 ; i= i + 9){
+          for (var i = table_size; i < dammy_table_size**2 ; i= i + table_size){
             if( dammy.includes(index - i) ){
               break;
             }
@@ -206,7 +211,7 @@
           }
         //左上方向チェック
           // 右下チェック
-          for (var i = 11; i < 100 ; i = i + 11){
+          for (var i = dammy_table_size + 1; i < dammy_table_size**2 ; i = i + dammy_table_size + 1){
             if( dammy.includes(index + i) ){
               break;
             }
@@ -218,7 +223,7 @@
             }
           }
           //左上チェック
-          for (var i = 11; i < 100 ; i= i + 11){
+          for (var i = dammy_table_size + 1; i < dammy_table_size**2 ; i= i + dammy_table_size + 1){
             if( dammy.includes(index - i) ){
               break;
             }
